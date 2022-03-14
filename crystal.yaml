@@ -1,0 +1,32 @@
+substitutions:
+  device_name: 'victor-krystal-led'
+  friendly_name: 'Victors Krystal'
+  device_description: "Led til at farve Victors krystal"
+  log_level: DEBUG
+ 
+packages:
+  device_base: !include common/base.yaml
+
+esphome:
+  platform: ESP8266
+  board: d1_mini
+  comment: '${device_description}'
+  
+light:
+  - platform: neopixelbus
+    type: GRB
+    variant: WS2812
+    pin: GPIO4
+    num_leds: 1
+    name: '${friendly_name}'
+    effects:
+      - addressable_rainbow:
+      - addressable_rainbow:
+          name: Rainbow Effect With Custom Values
+          speed: 10
+          width: 50
+      - flicker:
+      - flicker:
+          name: Flicker Effect With Custom Values
+          alpha: 95%
+          intensity: 1.5%    
